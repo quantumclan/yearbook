@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+<title>Yearbook Gallery</title>
+
+<style>
+:root {
+  --primary:#00f7ff;
+  --dark:#020617;
+  --glass:rgba(255,255,255,.08);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;font-family:Segoe UI,sans-serif}
+
+body{
+  background:radial-gradient(circle at top,#020617,#000);
+  color:#fff;
+}
+/* Top logos container */
+  .top-logos {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+/* Subtitle under logos */
+  .subtitle {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1em;
+    text-align: center;
+    color: #00ffe0;
+    text-shadow: 0 0 10px #00ffe0;
+    font-family: 'Orbitron', sans-serif;
+  }
+/* ===== NAV ===== */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 25px;
+  background:rgba(38, 37, 37, 0.6);
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+/* Logo text on the left */
+  .logo-text {
+        font-family: 'Orbitron', monospace;
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #FF5E00, #00B2FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 94, 0, 0.5);
+  }
+ .nav-links {
+    display: flex;
+    gap: 20px;
+    padding-right: 50px;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: #00ffe0;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background 0.2s, box-shadow 0.2s;
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .nav-links a:hover {
+    background: rgba(0,255,224,0.2);
+    box-shadow: 0 0 10px #00ffe0;
+  }
+.toggle{display:none;font-size:26px;cursor:pointer}
+
+ /* Header styles */
+  header {
+    padding: 30px 20px;
+    text-align: center;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0,255,255,0.2);
+    width: 100%;
+  }
+
+  header h1 {
+    font-size: 3em;
+    letter-spacing: 2px;
+    color: #ffffff;
+    text-shadow: 0 0 10px #00B2FF, 0 0 20px #000000;
+    margin: 0;
+  }
+ /* Responsive adjustments */
+  @media(max-width: 600px) {
+    header h1 {
+      font-size: 2em;
+    }
+    .close {
+      font-size: 2em;
+    }
+  }
+/* ===== FILTERS ===== */
+.filters{
+  display:flex;flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  padding: 30px 15px;
+}
+.filters button{
+  padding:10px 18px;
+  border:none;
+  border-radius:20px;
+  background:var(--glass);color:white;cursor:pointer;
+}
+.filters button.active,
+.filters button:hover{background:var(--primary);color:black}
+
+/* ===== GALLERY ===== */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:12px;
+  padding:20px;
+}
+.gallery-item{
+  border-radius:12px;
+  overflow:hidden;
+  cursor:pointer;
+}
+.gallery-item img,
+.gallery-item video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.4s;
+}
+.gallery-item:hover img,
+.gallery-item:hover video{
+  transform:scale(1.1)}
+
+/* ===== MODAL ===== */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+.modal-content img,
+.modal-content video{
+  max-width:90vw;
+  max-height:80vh;
+}
+
+/* ===== MODAL CONTROLS ===== */
+.modal-btn{
+  position:absolute;
+  font-size:35px;
+  color:white;
+  cursor:pointer;
+  user-select:none;
+}
+.prev{left:20px}
+.next{right:20px}
+.close{top:20px;right:25px;font-size:30px}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+  .nav-links{
+    position:absolute;top:60px;right:0;
+    background:#020617;width:200px;
+    flex-direction:column;padding:15px;display:none;
+  }
+  .nav-links.show{display:flex}
+  .toggle{display:block}
+}
+
+/* Contact Section */
+        .contact {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 94, 0, 0.2);
+            border-radius: 10px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #FF5E00;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 94, 0, 0.3);
+            color: white;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FF5E00;
+            box-shadow: 0 0 20px rgba(255, 94, 0, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #FF5E00, #00B2FF);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 94, 0, 0.5);
+        }
+
+        .contact-info {
+            padding: 40px;
+        }
+
+        .contact-info h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #ffffff, #FF5E00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .info-item {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #FF5E00, #00B2FF);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .info-details h4 {
+            color: #FF5E00;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .info-details p {
+            opacity: 0.8;
+        }
+
+
+   /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid rgba(255, 94, 0, 0.2);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #FF5E00;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: #00B2FF;
+            text-shadow: 0 0 10px currentColor;
+        }
+
+        .copyright {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        .copyright a {
+            color: #FF5E00;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .copyright a:hover {
+            color: #00B2FF;
+            text-shadow: 0 0 10px currentColor;
+        }
+</style>
+</head>
+
+<body>
+
+<!-- TOP LOGOS -->
+<div class="top-brand">
+   <div class="top-logos">
+    <img src="NAPS LOGO.png" height="35px"  width="40px" alt="Logo 1" />
+    <img src="uniabuja logo.png"  height="35px"  width="55px" alt="Logo 2" />
+  </div>
+  <!-- Subtitle under logos -->
+ <h1 class="subtitle" style="font-size: 2rem;">QUANTUM CLAN</h1>
+                <div class="subtitle">University of Abuja</div>
+                <div class="subtitle">Physics Department Graduating Class of 2025</div>    
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-text">YÓÓ DÁÁ</div>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="index.html#opener-div">About</a>
+    <a href="Gallery.html" style=" background: rgba(0,255,224,0.2);
+    box-shadow: 0 0 10px #00ffe0;">Gallery</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <div class="toggle" id="toggle">☰</div>
+</nav>
+<header>
+  <h1>Quantum Clan Gallery</h1>
+  <div class="subtitle">A GLIMPSE OF OUR TIME TOGETHER</div>
+</header>
+
+<!-- FILTER BUTTONS -->
+<div class="filters">
+  <button class="active" data-cat="all">All</button>
+  <button data-cat="videos">Videos</button>
+  <button data-cat="img1">Memories</button>
+  <button data-cat="img2">Funny Moments</button>
+</div>
+
+
+<!-- GALLERY -->
+<div class="gallery" id="gallery"></div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <span class="modal-btn prev" id="prevBtn">❮</span>
+  <div class="modal-content" id="modalContent"></div>
+  <span class="modal-btn next" id="nextBtn">❯</span>
+  <span class="modal-btn close" id="closeBtn">✕</span>
+</div>
+
+
+   <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+      <a href="guy.html">Gallery</a>
+      <a href="index.html#opener-div">About</a>
+      <a href="index.html#contact">Contact</a>
+            </div>
+            <div><img src="modal photos/Alade.jpg"  style="width: 100px; height: 100px; border-radius: 100%; border: #FF5E00 2px solid;" alt=""></div>
+            <a href="tel: 08102341309" style="text-decoration: none; color: #ffffffba;">CONTACT US: 08102341309, 09159835911 </a>
+            <a href="mailto: Joshuaalade9@gmail.com" style="text-decoration: none; color: #ffffffba;">Joshuaalade9@gmail.com </a>
+            <p class="copyright">© 2025 iCALTECH INNOVATIONS. All rights reserved. In character and learning. | Design: <a href="#" target="_blank" rel="nofollow noopener">iCALTECH INNOVATIONS</a></p>
+        </div>
+    </footer>
+
+
+
+
+<script>
+const media = [
+  {type:'video',src:'https://www.w3schools.com/html/mov_bbb.mp4',category:'videos'},
+  {type:'video',src:'alade//vid (1).mp4',category:'videos'},
+  {type:'video',src:'alade//vid (2).mp4',category:'videos'},
+  {type:'video',src:'alade//vid (3).mp4',category:'videos'},
+  {type:'video',src:'alade//vid (4).mp4',category:'videos'},
+  {type:'video',src:'alade//vid (5).mp4',category:'videos'},
+  {type:'video',src:'alade//vid (6).mp4',category:'videos'},
+  {type:'video',src:'alade//FF (1).mp4',category:'videos'},
+  {type:'video',src:'alade//FF (2).mp4',category:'videos'},
+  {type:'video',src:'alade//FF (3).mp4',category:'videos'},
+  {type:'video',src:'alade//FF (4).mp4',category:'videos'},
+  {type:'video',src:'alade//AS (1).mp4',category:'videos'},
+  {type:'video',src:'alade//AS (2).mp4',category:'videos'},
+  {type:'video',src:'alade//AS (3).mp4',category:'videos'},
+  {type:'video',src:'alade//FF (5).mp4',category:'videos'},
+  {type:'video',src:'alade//FF (7).mp4',category:'videos'},
+   {type:'image',src:'gallery/GAL (1).jpeg',category:'img1'},
+   {type:'image',src:"gallery/group c.jpeg" ,category:'img1'},
+   {type:'image',src:"gallery/group e.jpeg" ,category:'img1'},
+   {type:'image',src:"gallery/group d.jpeg" ,category:'img1'},
+   {type:'image',src:"gallery/group11.jpg" ,category:'img1'},
+   {type:'image',src:"gallery/group i.jpg" ,category:'img1'},
+   {type:'image',src:"gallery/group f.jpeg" ,category:'img1'},
+   {type:'image',src:"gallery/QC1 (3).jpeg" ,category:'img1'},
+  {type:'image',src:'gallery/group2.jpg',category:'img1'},
+  {type:'image',src:'gallery/group g.jpeg',category:'img1'},
+  {type:'image',src:'gallery/GL  (1).jpg',category:'img1'},
+  {type:'image',src:'gallery/GL  (2).jpg',category:'img1'},
+  {type:'image',src:'gallery/GL  (3).jpg',category:'img1'},
+  {type:'image',src:'gallery/GL  (4).jpg',category:'img1'},
+  {type:'image',src:'gallery/GL  (5).jpg',category:'img1'},
+  {type:'image',src:'gallery/GL (5).jpg',category:'img1'},
+  {type:'image',src:'gallery/GL (6).jpg',category:'img1'},
+  {type:'image',src:'gallery/GL (7).jpg',category:'img1'},
+  {type:'image',src:'gallery/GL (8).jpg',category:'img1'},
+  {type:'image',src:'gallery/GAL (3).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GL (9).jpg',category:'img1'},
+  {type:'image',src:'gallery/GAL (2).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (4).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (6).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (7).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (8).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (9).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (10).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (11).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (12).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (13).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (14).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (15).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (16).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (17).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (18).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (19).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (21).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (22).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (23).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GAL (24).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GGG (3).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GGG (4).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GGG (7).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GGG (5).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GGG (1).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GGG (6).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GGG (8).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GGG (9).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GGG (10).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GGG (13).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GGG (11).jpeg',category:'img1'},
+  {type:'image',src:'gallery/GGG (12).jpeg',category:'img1'},
+  {type:'image',src:'alade/TT (1).jpg',category:'img1'},
+  {type:'image',src:'alade/TT (2).jpeg',category:'img1'},
+  {type:'image',src:'alade/TT (3).jpg',category:'img1'},
+  {type:'image',src:'alade/TT (4).jpg',category:'img1'},
+  {type:'image',src:'alade/TT (5).jpg',category:'img1'},
+  {type:'image',src:'alade/TT (6).jpg',category:'img1'},
+  {type:'image',src:'alade/TT (7).jpg',category:'img1'},
+  {type:'image',src:'alade/TT (8).jpg',category:'img1'},
+  {type:'image',src:'alade/RE 20 (1).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE 20 (2).jpeg',category:'img1'},
+  {type:'image',src:'alade/TT (10).jpg',category:'img1'},
+  {type:'image',src:'alade/TT (11).jpg',category:'img1'},
+  {type:'image',src:'alade/TT (12).jpg',category:'img1'},
+  {type:'image',src:'alade/TT (13).jpg',category:'img1'},
+  {type:'image',src:'alade/TT (14).jpg',category:'img1'},
+  {type:'image',src:'alade/TT (15).jpeg',category:'img1'},
+  {type:'image',src:'alade/TT (15).jpg',category:'img1'},
+  {type:'image',src:'alade/TT (1.jpg',category:'img1'},
+  {type:'image',src:'alade/RE (1).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (2).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (3).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (4).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (5).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (6).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (7).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (8).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (9).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (10).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (11).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (12).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (13).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (14).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (15).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (16).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (17).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (18).jpeg',category:'img1'},
+  {type:'image',src:'alade/RE (19).jpeg',category:'img1'},
+  {type:'image',src:'funny pic/FF (1).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (2).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (3).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (4).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (5).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (6).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (7).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (8).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (9).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (10).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (11).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (12).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (13).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (14).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (15).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (17).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (18).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (19).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (20).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (21).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (22).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (23).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (24).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (25).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (26).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (27).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (28).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (29).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (30).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (31).jpg',category:'img2'},
+  {type:'image',src:'alade/TT (9).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (32).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (33).jpg',category:'img2'},
+  {type:'image',src:'funny pic/FF (34).jpg',category:'img2'},
+];
+
+let filteredMedia = [...media];
+let currentIndex = 0;
+
+const gallery = document.getElementById('gallery');
+const modal = document.getElementById('modal');
+const modalContent = document.getElementById('modalContent');
+
+/* ===== RENDER ===== */
+function renderGallery(){
+  gallery.innerHTML = '';
+  filteredMedia.forEach((item,index)=>{
+    const div = document.createElement('div');
+    div.className = 'gallery-item';
+    div.addEventListener('click',()=>openModal(index));
+
+    div.innerHTML = item.type === 'image'
+      ? `<img src="${item.src}">`
+      : `<video src="${item.src}" muted></video>`;
+
+    gallery.appendChild(div);
+  });
+}
+
+/* ===== FILTER ===== */
+document.querySelectorAll('.filters button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filters button')
+      .forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cat = btn.dataset.cat;
+    filteredMedia = cat === 'all'
+      ? [...media]
+      : media.filter(m=>m.category===cat);
+
+    renderGallery();
+  });
+});
+
+/* ===== MODAL ===== */
+function openModal(index){
+  currentIndex = index;
+  const item = filteredMedia[currentIndex];
+
+  modalContent.innerHTML = item.type === 'image'
+    ? `<img src="${item.src}">`
+    : `<video src="${item.src}" controls autoplay></video>`;
+
+  modal.style.display = 'flex';
+}
+
+function closeModal(){ modal.style.display='none'; }
+
+function navigate(dir){
+  currentIndex = (currentIndex + dir + filteredMedia.length) % filteredMedia.length;
+  openModal(currentIndex);
+}
+
+/* ===== EVENTS ===== */
+document.getElementById('closeBtn').onclick = closeModal;
+document.getElementById('prevBtn').onclick = ()=>navigate(-1);
+document.getElementById('nextBtn').onclick = ()=>navigate(1);
+
+modal.onclick = e => { if(e.target===modal) closeModal(); };
+
+/* ===== TOGGLE ===== */
+const toggle = document.getElementById('toggle');
+const navLinks = document.getElementById('navLinks');
+toggle.onclick = ()=>{
+  navLinks.classList.toggle('show');
+  toggle.textContent = navLinks.classList.contains('show') ? '✕' : '☰';
+};
+
+renderGallery();
+
+ // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+         
+            alert('Message sent! We\'ll get back to you shotly, thenk you for reaching out to iCALTECH INNOVATIONS.');
+            this.reset();
+        });
+
+</script>
+
+</body>
+</html>
