@@ -366,8 +366,8 @@ nav{
 <!-- TOP LOGOS -->
 <div class="top-brand">
    <div class="top-logos">
-    <img src="NAPS LOGO.png" height="35px"  width="40px" alt="Logo 1" />
-    <img src="uniabuja logo.png"  height="35px"  width="55px" alt="Logo 2" />
+    <img loading="eager" src="NAPS LOGO.png" height="35px"  width="40px" alt="Logo 1" />
+    <img loading="eager" src="uniabuja logo.png"  height="35px"  width="55px" alt="Logo 2" />
   </div>
   <!-- Subtitle under logos -->
  <h1 class="subtitle" style="font-size: 2rem;">QUANTUM CLAN</h1>
@@ -434,22 +434,22 @@ nav{
 
 <script>
 const media = [
-  {type:'video',src:'https://www.w3schools.com/html/mov_bbb.mp4',category:'videos'},
-  {type:'video',src:'alade//vid (1).mp4',category:'videos'},
-  {type:'video',src:'alade//vid (2).mp4',category:'videos'},
-  {type:'video',src:'alade//vid (3).mp4',category:'videos'},
-  {type:'video',src:'alade//vid (4).mp4',category:'videos'},
-  {type:'video',src:'alade//vid (5).mp4',category:'videos'},
-  {type:'video',src:'alade//vid (6).mp4',category:'videos'},
-  {type:'video',src:'alade//FF (1).mp4',category:'videos'},
-  {type:'video',src:'alade//FF (2).mp4',category:'videos'},
-  {type:'video',src:'alade//FF (3).mp4',category:'videos'},
-  {type:'video',src:'alade//FF (4).mp4',category:'videos'},
-  {type:'video',src:'alade//AS (1).mp4',category:'videos'},
-  {type:'video',src:'alade//AS (2).mp4',category:'videos'},
-  {type:'video',src:'alade//AS (3).mp4',category:'videos'},
-  {type:'video',src:'alade//FF (5).mp4',category:'videos'},
-  {type:'video',src:'alade//FF (7).mp4',category:'videos'},
+  {type:'video',src:'alade/vid (1).mp4',category:'videos'},
+  {type:'video',src:'alade/vid (2).mp4',category:'videos'},
+  {type:'video',src:'alade/vid (3).mp4',category:'videos'},
+  {type:'video',src:'alade/vid (4).mp4',category:'videos'},
+  {type:'video',src:'alade/vid (5).mp4',category:'videos'},
+  {type:'video',src:'alade/vid (6).mp4',category:'videos'},
+  {type:'video',src:'alade/vid.mp4',category:'videos'},
+  {type:'video',src:'alade/FF (1).mp4',category:'videos'},
+  {type:'video',src:'alade/FF (2).mp4',category:'videos'},
+  {type:'video',src:'alade/FF (3).mp4',category:'videos'},
+  {type:'video',src:'alade/FF (4).mp4',category:'videos'},
+  {type:'video',src:'alade/AS (1).mp4',category:'videos'},
+  {type:'video',src:'alade/AS (2).mp4',category:'videos'},
+  {type:'video',src:'alade/AS (3).mp4',category:'videos'},
+  {type:'video',src:'alade/FF (5).mp4',category:'videos'},
+  {type:'video',src:'alade/FF (7).mp4',category:'videos'},
    {type:'image',src:'gallery/GAL (1).jpeg',category:'img1'},
    {type:'image',src:"gallery/group c.jpeg" ,category:'img1'},
    {type:'image',src:"gallery/group e.jpeg" ,category:'img1'},
@@ -599,6 +599,57 @@ function renderGallery(){
   });
 }
 
+media.forEach(item => {
+  let el;
+
+  if (item.type === "image") {
+    el = document.createElement("img");
+    el.dataset.src = item.src;   // 👈 lazy source
+    el.alt = "Gallery image";
+    el.loading = "lazy";          // native lazy loading
+  }
+
+  if (item.type === "video") {
+    el = document.createElement("video");
+    el.controls = true;
+    el.preload = "none";          // VERY important
+    el.dataset.src = item.src;    // 👈 lazy source
+  }
+
+  el.classList.add("lazy");
+  el.dataset.category = item.category;
+  gallery.appendChild(el);
+});
+const lazyObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+
+    const el = entry.target;
+
+    // Images
+    if (el.tagName === "IMG") {
+      el.src = el.dataset.src;
+    }
+
+    // Videos
+    if (el.tagName === "VIDEO") {
+      const source = document.createElement("source");
+      source.src = el.dataset.src;
+      source.type = "video/mp4";
+      el.appendChild(source);
+      el.load();
+    }
+
+    observer.unobserve(el); // stop watching after load
+  });
+}, {
+  rootMargin: "200px", // preload before visible
+  threshold: 0.1
+});
+document.querySelectorAll(".lazy").forEach(el => {
+  lazyObserver.observe(el);
+});
+
 /* ===== FILTER ===== */
 document.querySelectorAll('.filters button').forEach(btn=>{
   btn.addEventListener('click',()=>{
@@ -651,13 +702,6 @@ toggle.onclick = ()=>{
 
 renderGallery();
 
- // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-         
-            alert('Message sent! We\'ll get back to you shotly, thenk you for reaching out to iCALTECH INNOVATIONS.');
-            this.reset();
-        });
 
 </script>
 
