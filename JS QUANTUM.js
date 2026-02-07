@@ -114,14 +114,6 @@ https://templatemo.com/tm-596-electric-xtra
             });
         });
 
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Add your form submission logic here
-            alert('Message sent! We\'ll get back to you soon.');
-            this.reset();
-        });
-
         // Initialize particles
         createParticles();
 
@@ -211,7 +203,27 @@ https://templatemo.com/tm-596-electric-xtra
             });
         }, 3000);
 
-        
+const videos = document.querySelectorAll('.lazy-video');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const video = entry.target;
+      const src = video.dataset.src;
+
+      if (src) {
+        const source = document.createElement('source');
+        source.src = src;
+        source.type = 'video/mp4';
+        video.appendChild(source);
+        video.load();
+        observer.unobserve(video);
+      }
+    }
+  });
+});
+
+videos.forEach(video => observer.observe(video));
 
 
         //sliding images and quotes
