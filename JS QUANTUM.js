@@ -460,7 +460,7 @@ var images=document.querySelectorAll(".images")
 var newImagesArray=[
 "modal photos/Alade.jpg",
 "main photos/IMG_1808 - Abugu Lucy.jpeg",
-"modal photos/Kenny 2.jpeg",
+"main photos/Kenny 1.jpeg",
 "main photos/2E258FFD-C071-4CDB-B753-751546B591E6 - Musa Mustapha.jpg",
 "main photos/IMG_3339 - Ifeoluwa Omojadegbe.jpeg",
 "main photos/mercy.jpg",
@@ -489,7 +489,7 @@ var newImagesArray=[
 "main photos/IMG_20250109_154947 - ABDULSAMAD.jpg",
 "main photos/Screenshot_20241006-215009 - promise obi.png",
 "main photos/IMG_20240510_130403_048 - usman muhammad.jpg",
-"main photos/TEE_0098@-879128078 - Daniel Bello.JPG",
+"main photos//TEE_0098@-879128078 - Daniel Bello.JPG",
 "main photos/IMG_6439 - Abibat Yetunde.jpeg",
 "main photos/IMG_20230720_224842_699 - INNOCENT MIRACLE.jpg",
 "main photos/Snapchat-1881987535 - Kentro Genius (1).jpg",
