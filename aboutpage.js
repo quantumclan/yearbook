@@ -1128,7 +1128,7 @@ var images = [
 "main photos/IMG_20250109_154947 - ABDULSAMAD.jpg",
 "main photos/Screenshot_20241006-215009 - promise obi.png",
 "main photos/IMG_20240510_130403_048 - usman muhammad.jpg",
-"main photos/TEE_0098@-879128078 - Daniel Bello.JPG",
+"main photos/TEE_0098@-879128078 - Daniel Bello.jpg",
 "modal photos/IMG-20250802-WA0009.jpg",
 "modal photos/IMG-20250802-WA0029.jpg",
 "modal photos/IMG-20250615-WA0006.jpg",
