@@ -1441,7 +1441,11 @@ line-height: 3.5ch;
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
+  @media (max-width: 400px) {
+           .glitch-text {
+                font-size: 30px;
+            }
+  }
         /* Responsive */
         @media (max-width: 768px) {
             nav {
