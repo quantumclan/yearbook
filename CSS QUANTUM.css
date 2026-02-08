@@ -1443,7 +1443,7 @@ line-height: 3.5ch;
         }
   @media (max-width: 400px) {
            .glitch-text {
-                font-size: 30px;
+                font-size: 10px;
             }
   }
         /* Responsive */
