@@ -554,7 +554,7 @@
 
         .glitch-text {
             font-family: 'Orbitron', monospace;
-            font-size: clamp(2.6rem, 10vw, 3.8rem);
+            font-size: clamp(2.0rem, 10vw, 3.8rem);
             font-weight: 900;
             position: relative;
             text-transform: uppercase;
