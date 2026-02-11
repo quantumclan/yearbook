@@ -1134,8 +1134,6 @@ var images = [
 "main photos/Snapchat-1881987535 - Kentro Genius (1).jpg",
     "main photos/IMG-20250101-WA0054 - Adirije Melody.jpg"
 ]
-]
-
 const modal = document.getElementById('infoModal');
   const modalText = document.getElementById('modalText');
   const modalImage = document.getElementById('graduateImage');
