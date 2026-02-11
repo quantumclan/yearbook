@@ -1937,7 +1937,30 @@ line-height: 3.5ch;
     font-size: 1.2em;
   }
 
-  /* Modal styles */
+/*modal info*/
+
+.modal_logo1{
+height: 55px; 
+width: 60px; 
+float: left;
+}
+.modal_logo2{
+height: 60px; 
+width: 90px; 
+float: left;
+}
+@media (max-width: 500px) {
+    .modal_logo1{
+height: 28px; 
+width: 30px; 
+}
+.modal_logo2{
+height: 30px; 
+width: 55px; 
+
+}
+  }
+ /* Modal styles */
   .modal {
     position: fixed;
     z-index: 999;
@@ -2132,5 +2155,18 @@ line-height: 3.5ch;
   }
   #modalHeading{
     font-size: 1.5em;
+  }
+  }
+  @media (max-width: 400px) {
+ .university{
+  font-size: 0.8em;
+  }
+  .department {
+    font-size:0.5em;
+  }
+
+
+  #modalHeading{
+    font-size: 1.2em;
   }
   }
