@@ -1128,7 +1128,7 @@ var images = [
 "main photos/IMG_20250109_154947 - ABDULSAMAD.jpg",
 "main photos/Screenshot_20241006-215009 - promise obi.png",
 "main photos/IMG_20240510_130403_048 - usman muhammad.jpg",
-"main photos/TEE_0098@-879128078 - Daniel Bello.jpg",
+"Daniel Bello.jpg",
 "main photos/IMG_6439 - Abibat Yetunde.jpeg",
 "main photos/IMG_20230720_224842_699 - INNOCENT MIRACLE.jpg",
 "main photos/Snapchat-1881987535 - Kentro Genius (1).jpg",
