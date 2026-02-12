@@ -243,7 +243,6 @@ var imageArray=[
         "Group images/group b.jpeg",
         "Group images/group h.jpeg",
     ]
-    console.log(imageArray.length)
      // titles for each image
   const titles = [
    "Project defence day: Having the last dance as undergraduate students of University of Abuja.",
@@ -269,7 +268,6 @@ var imageArray=[
         "Career Day of our FYB week",
         "Moment of appreciation to Alade Joshua Alade for his immense contributions as our class rep",
   ];
-  console.log(titles.length)
     var index=0
 window.addEventListener("load", changeImg)
 
