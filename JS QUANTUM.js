@@ -337,7 +337,7 @@ var imagesForQuotesArray=[
     "main photos/IMG_3339 - Ifeoluwa Omojadegbe.jpeg",
     "main photos/mercy.jpg",
     "main photos/IMG-20231001-WA0090 - Timilehin Jacobs.jpg",
-    "main photos/IMG_6264 - Love wins Always.jpeg",
+    "modal photos/taiwo.jpg",
     "main photos/My picture - Bilk J.jpg",
     "main photos/IMG_9768 - Ope Sotinwa.jpg",
     "main photos/Kefas Solomon Suwukari  - Kefas Solomon.jpg",
