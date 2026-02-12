@@ -380,13 +380,13 @@ var quotesArray=[
 
 "Obsession makes perfect",
 
-"To my fellow graduands and the university community, as we close this chapter and embark on new adventures very soon, let's carry the lessons we've learned and the friendships we've made. Together, we've faced challenges and celebrated successes, and I believe our diverse paths will lead to incredible opportunities. Congratulations to all of us for being in finals, and here's to a bright future ahead",
+"Embark on new adventures very soon, let's carry the lessons we've learned and the friendships we've made.",
 
 "Focus and acquire skills rather than focusing on school, this country na connection",
 
 "Keep reaching for your goals, it’s better than giving up",
 
-"I would like to tell my fellow graduands to always work hard and don't be a nuisance to the society and university community should continue to be great as always",
+"Always work hard and don't be a nuisance to the society and university community should continue to be great as always",
 
 "Follow your dreams",
 
@@ -430,7 +430,7 @@ var quotesArray=[
 
 "Best of luck",
 
-"To my fellow graduands, let's continue to strive for excellence and be ambassadors of this great institution (University of Abuja). To the university community, thank you for your guidance and support",
+"Continue to strive for excellence and be ambassadors of this great institution.",
 
 "Work hard less, work smart more, and dream big and let your success inspire the world",
 
