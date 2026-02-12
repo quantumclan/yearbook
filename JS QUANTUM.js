@@ -454,7 +454,7 @@ function displayQuotes(){
 }    
 var images=document.querySelectorAll(".images")
 var newImagesArray=[
-"modal photos/Alade.jpg",
+"main photos/Alade.jpeg",
 "main photos/IMG_1808 - Abugu Lucy.jpeg",
 "main photos/Kenny 1.jpeg",
 "main photos/2E258FFD-C071-4CDB-B753-751546B591E6 - Musa Mustapha.jpg",
