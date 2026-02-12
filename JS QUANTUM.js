@@ -361,7 +361,7 @@ var imagesForQuotesArray=[
     "main photos/IMG_20250109_154947 - ABDULSAMAD.jpg",
     "main photos/Screenshot_20241006-215009 - promise obi.png",
     "main photos/IMG_20240510_130403_048 - usman muhammad.jpg",
-    "main photos/TEE_0098@-879128078 - Daniel Bello.jpg",
+    "Daniel Bello.jpg",
     "main photos/IMG_6439 - Abibat Yetunde.jpeg",
     "main photos/IMG_20230720_224842_699 - INNOCENT MIRACLE.jpg",
     "main photos/Snapchat-1881987535 - Kentro Genius (1).jpg",
@@ -398,13 +398,13 @@ var quotesArray=[
 
 "Knowledge starts with interest",
 
-"Embrace curiosity, value resilience, and never stop learning. Together, let’s use the knowledge we’ve gained to make meaningful contributions to the world and inspire the next generation to dream bigger",
+"Embrace curiosity, value resilience, and never stop learning.",
 
 "Study hard",
 
 "Stay humble",
 
-"That things will get better",
+"Things will get better",
 
 "Just keep on doing the good work and be consistent",
 
@@ -418,7 +418,7 @@ var quotesArray=[
 
 "School is not the end. Strive to progress wherever you find yourself. Don't cut corners",
 
-"To believe in themselves, as nothing is impossible to achieve",
+"Believe in yourself, as nothing is impossible to achieve",
 
 "Be a great student of the university",
 
