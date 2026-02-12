@@ -940,24 +940,11 @@ height: 400px;
     height: 70%;
     background:transparent;
     border-radius: 10px;
-    animation: quantum 6s linear infinite normal;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-@keyframes quantum{
-    0%{
-        transform:scale(1);
-    }
-    100%{
-        transform: scale(1.08)
-    }
-}
-.name_of_graduand{
-    font-style: italic;
-}
-
 
 /*For the about page*/
 .content{
