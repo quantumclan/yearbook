@@ -35,7 +35,7 @@ var namesOfstudents=[
 "Innocent Miracle Godwin",
                 ]
 var DOB=[
-        "May 26, 1999",
+"May 26, 1999",
 "March 23, 1996",
 "July 22, 2000",
 "October 25, 2003",
@@ -147,7 +147,7 @@ var opinionAboutCourse=[
 ]
 
 var expectationFromCourse=[
-"I believe by working hard on this path as a physicist and believing in Christ Jesus, I will one day be the most renowned Astrophysicist in the world",
+"I believe by working hard on this path as a physicist and believing in Christ Jesus, I will one day be the most renowned human in the world",
 "To acquire more knowledge as an Astrophysicist",  
 "Omo... sch wan keeeeeyl me, I just wan graduate!!! But on a more serious note, I want it to be an eye opener in the coming years",  
 "Finish the course with a good grade",  
@@ -624,7 +624,7 @@ var biggestChallenge=[
 ]
 
 var adviceToFreshmanSelf=[
-    "To build a better relationship with God, and also to be more friendly and welcoming", 
+    "Build a better relationship with God, and also to be more friendly and welcoming", 
 
 "To start building my CGPA early",
 "Don't put your mind on being taught, go teach yourself... So you won't be left behind!",
@@ -765,7 +765,7 @@ var StateOfOrigin=[
 "Benue State",  
 ]
 var positionsHeld=[
-"Class Rep, Assistant Academic director 2022/23 (FPCS), Director of Academics 2023/24 (FPCS), President (FPCS) 2025 ",   
+"Class Rep, Assistant Academic director 2022/23 (FPCS), Director of Academics 2023/24 (NAPS), President (FPCS) 2025 ",   
 "Assistant Course Rep, Quantum Clan FYB committee Chairperson, General Secretary (FPCS) 2025" ,  
 "NAPS General Secretary 2025",  
 "Vice President (FOSSA) 2024/2025, Director of Sports (NAPS) 2023/24",  
